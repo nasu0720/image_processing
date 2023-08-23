@@ -1,0 +1,24 @@
+<!doctype html>
+<title>mosaic</title>
+
+<div class=page>
+  <h1>画像加工サイト</h1>
+  <p>処理したい画像をアップロードしてください</p>
+  <p>※ファイル形式はjpeg、pngのみ対応しています</p>
+  <p>※横向きの写真はうまく顔を検出できない可能性が高いです</p>
+  <form  method="POST" enctype="multipart/form-data" action="{{url_for('upload')}}">
+    <input type="file" name="img" accept="image/jpeg, image/png" >
+    <button type="submit" name="send" value="mosaic">顔検出＆モザイク</button>
+    <button type="submit" name="send" value="oil">油絵エフェクト</button>
+  </form>
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class=flashes>
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  {% endwith %} 
+  
+</div>
